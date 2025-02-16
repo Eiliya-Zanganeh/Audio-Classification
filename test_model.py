@@ -37,11 +37,12 @@ def predict(file_path):
 
     predictions = []
     for chunk in chunks:
-        tensor_input = preprocess_audio(chunk)
-        with torch.no_grad():
-            output = model(tensor_input)
-            predicted_class = torch.argmax(output, dim=1).item()
-            predictions.append(predicted_class)
+        if len(chunk) == 1000:
+            tensor_input = preprocess_audio(chunk)
+            with torch.no_grad():
+                output = model(tensor_input)
+                predicted_class = torch.argmax(output, dim=1).item()
+                predictions.append(predicted_class)
     print(predictions)
     most_common_class = max(set(predictions), key=predictions.count)
     return classes[most_common_class]
