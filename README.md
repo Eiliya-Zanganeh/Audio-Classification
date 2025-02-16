@@ -17,6 +17,21 @@
 - 3 - Use AdamW optimizer with lr: 1e-3.
 - 4 - Data have 27 different class.
 
+### How to use:
+
+- 1 - Install dependencies:
+```shell
+pip install -r requirements.txt
+```
+2 - Run preprocessing code:
+```shell
+python3 preprocessing.py
+```
+3 - Run main.ipynb for train model.
+```text
+main.ipynb
+```
+
 ### Test and results:
 
 - Model evaluate with validation and test data.
