@@ -29,9 +29,9 @@ def train():
 
         for batch in train_dataset:
             optimizer.zero_grad()
-            images, labels = batch
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
+            audios, labels = batch
+            audios, labels = audios.to(device), labels.to(device)
+            outputs = model(audios)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -52,9 +52,9 @@ def train():
 
         model.eval()
         for batch in validation_dataset:
-            images, labels = batch
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
+            audios, labels = batch
+            audios, labels = audios.to(device), labels.to(device)
+            outputs = model(audios)
             loss = criterion(outputs, labels)
 
             outputs = argmax(outputs, dim=1)
@@ -81,10 +81,10 @@ def test():
 
     with torch.no_grad():
         for batch in test_dataset:
-            images, labels = batch
-            images, labels = images.to(device), labels.to(device)
+            audios, labels = batch
+            audios, labels = audios.to(device), labels.to(device)
 
-            outputs = model(images)
+            outputs = model(audios)
             loss = criterion(outputs, labels)
 
             preds = argmax(outputs.data, 1)
